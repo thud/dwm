@@ -1,0 +1,12 @@
+*.o
+*.ko
+*.lib
+*.a
+*.dll
+*.so
+*.so.*
+*.dylib
+dwm
+*.exe
+*.out
+*.app
