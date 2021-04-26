@@ -7,10 +7,10 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating	= 0;		/* 1 means swallowing floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "-*-inconsolata semibold-*-*-*-*-*-*-*-*-*-*-*-*",
+static const char *fonts[]          = {"JetBrainsMonoMedium:pixelsize=14",
 										"monospace:size=10",
 										"-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1" };
-static const char dmenufont[]       = "-*-inconsolata semibold-*-*-*-*-*-*-*-*-*-*-*-*\",\"-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1";
+static const char dmenufont[]          = "JetBrainsMonoMedium:pixelsize=14\",\"-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1";
 static const char col_gray1[]       = "#2E3440";
 static const char col_gray2[]       = "#3B4252";
 static const char col_gray3[]       = "#D8DEE9";
@@ -32,6 +32,7 @@ static const Rule rules[] = {
 	{ "brave-browser",	NULL,	  	NULL,			1 << 8,		0,			0,			-1,			-1 },
 	{ "Alacritty",		NULL,		NULL,			0,			0,			1,			0,			-1 },
 	{ "mpv",			NULL,		NULL,			0,			0,			0,			0,			-1 },
+	{ NULL,		  		NULL,		"Python Turtle Graphics",	0,			0,			0,			1,			-1 },
 	{ NULL,		  		NULL,		"Event Tester", 0,			0,			0,			1,			-1 },
 };
 
@@ -42,7 +43,7 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[ ]=",     tile },    /* first entry is default */
+	{ "[]=",     tile },    /* first entry is default */
 //	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
@@ -105,8 +106,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	
-	{ MODKEY,						XK_a,	   				   spawn,		   SHCMD("brave") },
-	{ MODKEY|ShiftMask,				XK_a,	   				   spawn,		   SHCMD("brave --incognito") },
+	{ MODKEY,						XK_a,	   				   spawn,		   SHCMD("$BROWSER") },
+	{ MODKEY|ShiftMask,				XK_a,	   				   spawn,		   SHCMD("$BROWSER --private-window --incognito") },
 	{ 0,							XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl intel_backlight -10") },
 	{ 0,							XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl intel_backlight +10") },
 	{ Mod1Mask,						XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl chromeos::kbd_backlight -10") },
