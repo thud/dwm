@@ -110,13 +110,13 @@ static Key keys[] = {
 
 	{ MODKEY,						XK_a,	   				   spawn,		   SHCMD("$BROWSER") },
 	{ MODKEY|ShiftMask,				XK_a,	   				   spawn,		   SHCMD("$BROWSER --private-window --incognito") },
-	{ 0,							XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl intel_backlight -10") },
-	{ 0,							XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl intel_backlight +10") },
-	{ Mod1Mask,						XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl chromeos::kbd_backlight -10") },
-	{ Mod1Mask,						XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl chromeos::kbd_backlight +10") },
+	{ 0,							XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl intel_backlight -10 -fps 30") },
+	{ 0,							XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl intel_backlight +10 -fps 30") },
+	{ Mod1Mask,						XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl chromeos::kbd_backlight -10 -fps 30") },
+	{ Mod1Mask,						XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl chromeos::kbd_backlight +10 -fps 30") },
 	{ 0,							XF86XK_AudioMute,   	   spawn,		   SHCMD("amixer sset Master mute > /dev/null 2>&1") },
 	{ 0,							XF86XK_AudioLowerVolume,   spawn,		   SHCMD("amixer sset Master 10%- > /dev/null 2>&1") },
-	{ 0,							XF86XK_AudioRaiseVolume,   spawn,		   SHCMD("amixer sset Master 10%+ unmute > /dev/null 2>&1") },
+	{ 0,							XF86XK_AudioRaiseVolume,   spawn,		   SHCMD("amixer sset Master 10\%+ unmute > /dev/null 2>&1") },
 };
 
 /* button definitions */
