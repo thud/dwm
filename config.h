@@ -24,7 +24,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* class	  		instance    title       	tags mask	isfloating  isterminal  noswallow	monitor */
@@ -108,15 +108,16 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 
+	{ MODKEY,						XK_e,	   				   spawn,		   SHCMD("setbg") },
+	{ MODKEY,						XK_r,	   				   spawn,		   SHCMD("screentoggle") },
+	{ ControlMask,					XK_space,  				   spawn,		   SHCMD("dunstctl close") },
+	{ ControlMask|ShiftMask,		XK_space,  				   spawn,		   SHCMD("dunstctl close-all") },
 	{ MODKEY,						XK_a,	   				   spawn,		   SHCMD("$BROWSER") },
 	{ MODKEY|ShiftMask,				XK_a,	   				   spawn,		   SHCMD("$BROWSER --private-window --incognito") },
 	{ 0,							XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl intel_backlight -10 -fps 30") },
 	{ 0,							XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl intel_backlight +10 -fps 30") },
 	{ Mod1Mask,						XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl chromeos::kbd_backlight -10 -fps 30") },
 	{ Mod1Mask,						XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl chromeos::kbd_backlight +10 -fps 30") },
-	{ 0,							XF86XK_AudioMute,   	   spawn,		   SHCMD("amixer sset Master mute > /dev/null 2>&1") },
-	{ 0,							XF86XK_AudioLowerVolume,   spawn,		   SHCMD("amixer sset Master 10%- > /dev/null 2>&1") },
-	{ 0,							XF86XK_AudioRaiseVolume,   spawn,		   SHCMD("amixer sset Master 10\%+ unmute > /dev/null 2>&1") },
 };
 
 /* button definitions */
