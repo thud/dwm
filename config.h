@@ -7,7 +7,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating	= 0;		/* 1 means swallowing floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = {"JetBrainsMonoMedium:pixelsize=14",
+static const char *fonts[]          = {"JetBrainsMonoMedium Nerd Font:pixelsize=14",
 										"monospace:size=10",
 										"-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1" };
 static const char dmenufont[]          = "JetBrainsMonoMedium:pixelsize=14\",\"-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1";
@@ -112,12 +112,15 @@ static Key keys[] = {
 	{ MODKEY,						XK_r,	   				   spawn,		   SHCMD("screentoggle") },
 	{ ControlMask,					XK_space,  				   spawn,		   SHCMD("dunstctl close") },
 	{ ControlMask|ShiftMask,		XK_space,  				   spawn,		   SHCMD("dunstctl close-all") },
-	{ MODKEY,						XK_a,	   				   spawn,		   SHCMD("$BROWSER") },
+ 	{ MODKEY,						XK_a,	   				   spawn,		   SHCMD("$BROWSER") },
 	{ MODKEY|ShiftMask,				XK_a,	   				   spawn,		   SHCMD("$BROWSER --private-window --incognito") },
-	{ 0,							XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl intel_backlight -10 -fps 30") },
-	{ 0,							XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl intel_backlight +10 -fps 30") },
-	{ Mod1Mask,						XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl chromeos::kbd_backlight -10 -fps 30") },
-	{ Mod1Mask,						XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl chromeos::kbd_backlight +10 -fps 30") },
+	{ 0,							XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl intel_backlight -10") },
+	{ 0,							XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl intel_backlight +10") },
+	{ Mod1Mask,						XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl tpacpi::kbd_backlight -10") },
+	{ Mod1Mask,						XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl tpacpi::kbd_backlight +10") },
+    { 0,							XF86XK_AudioMute,   	   spawn,		   SHCMD("volume m") },
+    { 0,							XF86XK_AudioRaiseVolume,   spawn,		   SHCMD("volume i") },
+    { 0,							XF86XK_AudioLowerVolume,   spawn,		   SHCMD("volume d") },
 };
 
 /* button definitions */
