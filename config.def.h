@@ -24,7 +24,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -41,8 +41,8 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -66,11 +66,14 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, topbar ? NULL : "-b", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termxcmd[]  = { "alacritty", "-e", "tmux", NULL };
 
+#include <X11/XF86keysym.h>
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termxcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
@@ -107,9 +110,20 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	
-	{ MODKEY,						XK_a,	   spawn,		   SHCMD("brave") },
-	{ MODKEY|ShiftMask,				XK_a,	   spawn,		   SHCMD("brave --incognito") },
+
+	{ MODKEY,						XK_e,	   				   spawn,		   SHCMD("setbg") },
+	{ MODKEY,						XK_r,	   				   spawn,		   SHCMD("screentoggle") },
+	{ ControlMask,					XK_space,  				   spawn,		   SHCMD("dunstctl close") },
+	{ ControlMask|ShiftMask,		XK_space,  				   spawn,		   SHCMD("dunstctl close-all") },
+ 	{ MODKEY,						XK_a,	   				   spawn,		   SHCMD("$BROWSER") },
+	{ MODKEY|ShiftMask,				XK_a,	   				   spawn,		   SHCMD("$BROWSER --private-window --incognito") },
+	{ 0,							XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl intel_backlight -10") },
+	{ 0,							XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl intel_backlight +10") },
+	{ Mod1Mask,						XF86XK_MonBrightnessDown,  spawn,		   SHCMD("xbacklight -ctrl tpacpi::kbd_backlight -10") },
+	{ Mod1Mask,						XF86XK_MonBrightnessUp,	   spawn,		   SHCMD("xbacklight -ctrl tpacpi::kbd_backlight +10") },
+    { 0,							XF86XK_AudioMute,   	   spawn,		   SHCMD("volume m") },
+    { 0,							XF86XK_AudioRaiseVolume,   spawn,		   SHCMD("volume i") },
+    { 0,							XF86XK_AudioLowerVolume,   spawn,		   SHCMD("volume d") },
 };
 
 /* button definitions */
